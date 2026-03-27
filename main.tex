@@ -1,0 +1,337 @@
+\documentclass[UTF8,a4paper,12pt]{ctexart}
+% \usepackage[left=3cm, right=3cm]{geometry}
+\usepackage[a4paper, left=2.5cm, right=2.5cm, bottom=2.5cm, top = 3.0cm,bindingoffset=10mm, headheight = 16mm, headsep=14mm, footskip=10mm]{geometry}
+
+\usepackage{amsmath}
+\numberwithin{equation}{section}
+\renewcommand\thesection{\arabic{section}}
+\allowdisplaybreaks[4]       %多行公式中换页
+\usepackage{array}
+\usepackage[font=small,labelsep=none]{caption}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+
+\usepackage{dutchcal}
+\usepackage{color}
+\usepackage{graphicx}    %插入图片 
+\usepackage{times}
+\usepackage{mathptmx}
+\usepackage{fancyhdr} %页眉页脚
+\usepackage{booktabs}  %三线表
+\usepackage{indentfirst}
+
+% 每章开始时重置图片计数器
+\usepackage{chngcntr}
+\counterwithin{figure}{section}
+\counterwithin{table}{section}
+
+% 参考文献
+\usepackage[
+    style=gb7714-2015,  % 指定 2015 版国标
+    citestyle=gb7714-2015,
+    backend=biber,      % 后端使用 biber (推荐) 或 bibtex
+    sortcites=true      % 引用排序
+]{biblatex}
+\addbibresource{reference.bib} 
+\usepackage{hyperref}                       %超链接
+\hypersetup{colorlinks=true,linkcolor=black,citecolor=black,filecolor=black}    %黑色
+
+% --- 字体与字号设置 ---
+% 设置正文字体为宋体，字号为小四（12pt）
+\setCJKmainfont{SimSun} 
+\zihao{-4} % -4 代表小四号
+\setlength{\parindent}{2em}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\thepage}
+
+\newcommand*{\circled}[1]{\lower.7ex\hbox{\tikz\draw (0pt, 0pt)%
+    circle (.5em) node {\makebox[1em][c]{\small #1}};}}
+    
+\usepackage{hyperref}  %目录
+\hypersetup{colorlinks=true,linkcolor=black}
+
+\renewcommand {\thefigure} {\thesection{}.\arabic{figure}}%设定图片的编号。这样设置的实现效果为图1.1
+\renewcommand {\thetable} {\thesection{}.\arabic{table}}
+
+
+\usepackage{caption}
+\captionsetup{font={small},labelsep=quad}%文字5号，之间空一个汉字符位。
+
+\usepackage{appendix}
+\usepackage{tocloft} 
+\usepackage{titletoc}
+
+\usepackage{titlesec}
+% --- 行间距设置 ---
+\setlength{\baselineskip}{20pt}
+
+% 设置section字体为黑体三号
+\titleformat{\section}{\heiti\zihao{3}\centering}{\thesection}{0.5em}{}[]
+% 设置subsection字体为黑体小三号
+\titleformat{\subsection}{\heiti\zihao{-3}}{\thesubsection}{0.5em}{}[]
+% 设置subsubsection字体为黑体四号
+\titleformat{\subsubsection}{\heiti\zihao{4}}{\thesubsubsection}{0.5em}{}[]
+%\titlespacing{\section}{0pt}{\baselineskip}{\baselineskip}
+%\titlespacing{\section}{0pt}{0pt}{\baselineskip}
+
+% 目录中section的格式
+\titlecontents{section}[0pt]{\addvspace{0pt}\filright\heiti\zihao{4}}%
+               {\contentspush{\thecontentslabel \quad}}%
+               {}{\titlerule*[8pt]{.}\contentspage}
+% 目录中subsection的格式
+\titlecontents{subsection}[1em]{\addvspace{0pt}\filright\heiti\zihao{5}}%
+               {\contentspush{\thecontentslabel \quad}}%
+               {}{\titlerule*[8pt]{.}\contentspage}
+% 目录中subsubsection的格式
+\titlecontents{subsubsection}[2em]{\addvspace{0pt}\filright\songti\zihao{5}}%
+               {\contentspush{\thecontentslabel \quad}}%
+               {}{\titlerule*[8pt]{.}\contentspage}
+
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}} %为目录中section补上引导点
+
+% \renewcommand{\headrulewidth}{0.5pt} 
+\makeatletter % 单线页眉
+\def\headrule{{\if@fancyplain\let\headrulewidth\plainheadrulewidth\fi%
+\hrule\@height 0.5pt \@width\headwidth\vskip1.5pt% 上面线为0.5pt粗
+\vskip-2\headrulewidth
+\vskip-1pt
+}}     % 与下面正文之间的垂直间距
+
+% 1. 备份原始的 \section 命令
+\let\oldsection\section
+% 2. 重新定义 \section
+\def\section{\null\oldsection}
+\titlespacing*{\section}{0pt}{0pt}{\baselineskip}
+\titlespacing*{\subsection}{0pt}{\baselineskip}{0pt}
+\titlespacing*{\subsubsection}{0pt}{0pt}{0pt}
+\makeatother
+
+
+% \setlength{\headheight}{14.48167pt} 
+% \setlength{\voffset}{-1.14cm}
+% \setlength{\topmargin}{0cm}
+% \setlength{\headsep}{2cm}
+
+
+\begin{document}
+
+\thispagestyle{empty}
+
+
+
+% 注：以下页面似乎与word不一致，建议直接插入两页pdf（\include{}），反正改的不多
+\begin{center}
+\heiti  \zihao{-2} 重庆大学本科学生毕业论文（设计）
+\end{center}
+%该页为中文扉页。无需页眉页脚，纸质论文应装订在右侧
+~\\
+\begin{center}
+\heiti  \zihao{2} XXX计算方法的研究
+\end{center}
+%中文论文标题，1行或2行，黑体，二号，居中。论文题目不得超过36个汉字
+
+~\\
+\renewcommand{\headrulewidth}{1pt}
+\begin{figure}[htb] 
+  \centering
+    \center{\includegraphics[width=5cm]  {img/cqu_logo.png}} 
+     \end{figure}
+     
+~\\
+\begin{center}
+\heiti\zihao{3}
+\linespread{1} 
+\begin{tabular}{l}
+学\qquad 生：你的名字\\
+学\qquad 号：你的学号\\
+指导教师：你的指导教师\\
+专\qquad 业：你的专业\\
+\end{tabular}
+\end{center}
+
+%此模版适用于理工农医等专业；人文社科类专业按《重庆大学普通本科毕业论文（设计）撰写规范化要求》。  若没有助理指导教师，请删除“助理指导教师姓名”栏。若为校外完成毕业论文（设计），请改为“校外指导教师姓名”即可。  学院、专业填全称。
+
+~\\
+\begin{center}
+\heiti \zihao{-2} {重庆大学计算机学院}\\
+\end{center}
+
+\begin{center}
+\heiti \zihao{3} {2026年6月}
+\end{center}
+
+
+
+\newpage
+\thispagestyle{empty}
+\setmainfont{Times New Roman}
+\begin{center}
+\zihao{3}
+\textbf{
+Undergraduate Thesis (Design) of Chongqing University}
+\end{center}
+~\\
+\begin{center}
+\zihao{2}
+\textbf{
+Study on Calculation method of XXX }
+\end{center}
+
+~\\
+\renewcommand{\headrulewidth}{1pt}
+\begin{figure}[htb] 
+  \centering
+    \center{\includegraphics[width=5cm]  {img/cqu_logo.png}} 
+     \end{figure}
+     
+
+\setmainfont{Times New Roman}
+\begin{center}
+\zihao{3} 
+\textbf{By}  \\
+\textbf{XXX}
+\end{center}
+
+\begin{center}
+\zihao{3} 
+\textbf{Supervised by}\\
+\textbf{Prof. XXX}\\
+\end{center}
+
+\begin{center}
+\zihao{-2} 
+\textbf{XXX}\\ %专业
+\textbf{XXX}\\ %学院
+\textbf{XXX}
+\end{center}
+
+\begin{center}
+\zihao{3} 
+\textbf{June，2026}
+\end{center}
+
+
+\newpage
+\pagestyle{fancy}
+\pagenumbering{Roman}
+
+% 设置左侧页眉
+\fancyhead[LH]{ \songti\zihao{-5} 重庆大学本科学生毕业论文（设计）}
+\fancyhead[RH]{\songti\zihao{-5} 摘要}
+
+
+
+\addcontentsline{toc}{section}{摘要}
+
+\section*{摘\quad 要}
+%摘要：二字间空两格，黑体三号居中，段前，段后各空一行。
+
+摘要是论文（设计）内容不加注释和评论的简短陈述，应具有独立性和自明性，即不阅读论文（设计）的全文，就可以获得必要的信息。\par 
+摘要一般应说明研究工作的目的 和意义、研究思想和方法、研究过程、研究结果和最终结论等。摘要中一般不用图、表、化学结构式、计算机程序，不用非公知公用的符号、术语和非法定的计量单位。\par 
+中文摘要一般为300-500汉字。\par 
+摘要页置于英文题名页后。 \par 
+关键词是从论文（设计）题名、摘要或正文中选取的对表示论文（设计）主题内容起关键作用，且具有检索意义的词或词组。一般每篇论文（设计）应选取3-5个词作为关键词，以显著的字符另起一行，排在同种语言摘要的下方，尽量用《汉语主题词表》或各专业主题词表提供的规范词。\par 
+关键词与摘要的内容之间空一行。关键词的词间用分号间隔，末尾不加标点。\\
+~\\
+\hspace*{2em}{\heiti \zihao{-4}关键词}：学位论文；论文格式；规范化；模板\\
+%关键字：宋体12磅，行距20磅，段前段后0磅，关键字之间用分号隔开,关键词三个字加粗。
+
+\newpage
+\fancyhead[LH]{ \songti\zihao{-5} 重庆大学本科学生毕业论文（设计）}
+\fancyhead[RH]{\zihao{-5} ABSTRACT}
+
+\addcontentsline{toc}{section}{ABSTRACT}
+\titleformat{\section}[block]{\centering\bfseries\fontspec{Times New Roman}\fontsize{16pt}{20pt}\selectfont}{\thesection}{1em}{}[]
+
+\section*{ABSTRACT}
+%ABSTRCT：Times New Roman 加粗三号，段前段后空一行
+
+As a primary means of demonstrating research findings for undergraduate students, dissertation is a systematic and standardized record of the new inventions, theories or insights obtained by the author in the research work. It can not only function as an important reference when students pursue further studies, but also contribute to scientific research and social development.\par 
+This template is therefore made to improve the quality of undergraduates’ dissertation and to further standardize it both in content and in format.
+%英文摘要内容：Times New Roman 12磅（即小四号），行距20磅段前段后0磅
+
+~\\ 
+\hspace*{2em}\textbf{Key words}: dissertation;dissertation format;standardization;template\\
+%Keywords：Times New Roman 12磅，行距20磅， “key words” 两词加粗
+
+\newpage
+% \pagestyle{fancy}
+% \fancyhead[LH]{\songti\zihao{-5} 重庆大学本科学生毕业论文（设计）}
+% \fancyhead[RH]{\songti\zihao{-5} 目录}
+% \renewcommand\contentsname{{目\quad 录}}
+
+% \begin{center}
+% \thispagestyle{fancy}
+% \fancypagestyle{plain}{
+%   \fancyhf{}
+%   \fancyhead[LH]{\songti\zihao{-5} 重庆大学本科学生毕业论文（设计）}
+%   \fancyhead[RH]{\songti\zihao{-5} 目录}
+%   \fancyfoot[C]{\thepage}
+%   \renewcommand{\headrulewidth}{0.4pt}
+%   \renewcommand{\footrulewidth}{0pt}
+% }
+% {\tableofcontents}
+% \end{center}
+\newpage
+\fancyhead[LH]{ \songti\zihao{-5} 重庆大学本科学生毕业论文（设计）}
+\fancyhead[RH]{\songti\zihao{-5} 目录}
+
+\begin{center}
+    \null
+    \heiti\zihao{3} 目\quad 录
+    \vspace{-20pt}
+\end{center}
+
+\renewcommand\contentsname{}
+
+\begin{center}
+{\tableofcontents
+\thispagestyle{fancy}
+}
+\end{center}
+
+
+
+\titleformat{\section}{\heiti\zihao{3}\centering}{\thesection}{0.5em}{}[]
+
+\newpage
+\input{introdoction}
+
+\newpage
+\input{related_work}
+
+\newpage
+\input{system_design}
+
+\newpage
+\input{expriment}
+
+\newpage
+\input{conclusion}
+
+\newpage
+\fancyhead[LH]{\zihao{-5}{\songti 重庆大学本科学生毕业论文（设计）}}
+\fancyhead[RH]{\zihao{-5}{\songti 参考文献}}
+
+\phantomsection
+\addcontentsline{toc}{section}{参考文献}
+\def\refname{参~考~文~献} 
+\zihao{5}
+\printbibliography[title={}]
+
+%（参考文献格式请参考GB/T 7714-2015《信息与文献 参考文献著录规则》）
+
+\newpage
+\input{appendix}
+
+\newpage
+\input{thanks}
+
+\newpage
+\input{shengming}
+
+\end{document} 
